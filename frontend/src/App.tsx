@@ -3,6 +3,9 @@ import { Suspense, lazy } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import TestPage from "./pages/TestPage";
 import BookDetailPage from "./pages/books/[id]";
+import { Toaster } from "sonner";
+
+
 
 const BooksPage = lazy(() => import("./pages/BooksPage"));
 const AuthorsPage = lazy(() => import("./pages/AuthorsPage"));
@@ -27,6 +30,7 @@ function App() {
 
           </Routes>
         </Suspense>
+            <Toaster />
       </div>
     </Router>
   );

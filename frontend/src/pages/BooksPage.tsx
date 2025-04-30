@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { EditBookDialog } from "@/components/Books/EditBookDialog";
 import { ConfirmDeleteDialog } from "@/components/Books/ConfirmDeleteDialog";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 const PAGE_SIZE = 5;
 
@@ -28,9 +29,16 @@ export default function BooksPage() {
   }, [refresh]);
 
   const handleDelete = async (id: number) => {
-    await deleteBook(id);
-    setRefresh(!refresh);
+    try {
+      await deleteBook(id);
+      toast.success("Libro eliminado correctamente");
+      setRefresh(!refresh);
+    } catch (err) {
+      console.error(err);
+      toast.error("Error al eliminar el libro");
+    }
   };
+  
 
   const filteredBooks = books.filter((book) =>
     `${book.title} ${book.description}`.toLowerCase().includes(searchTerm.toLowerCase())

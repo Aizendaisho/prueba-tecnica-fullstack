@@ -6,6 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { createBook,updateBook } from "@/services/bookService";
+import { toast } from "sonner";
+
 
 type BookFormProps = {
   defaultValues?: Partial<BookFormValues>;
@@ -38,17 +40,17 @@ export function BookForm({ onSuccess, mode }: BookFormProps) {
   
       if (mode === "edit") {
         await updateBook(data.id, payload); // ← Esto debe existir
-        alert("📘 Libro actualizado");
+        toast.success("📘 Libro actualizado");
       } else {
         await createBook(payload);
-        alert("📗 Libro creado");
+        toast.success("📗 Libro creado");
       }
   
       reset();
       onSuccess?.();
     } catch (error) {
       console.error(error);
-      alert("❌ Error al guardar");
+      toast.error("❌ Error al guardar");
     } finally {
       setLoading(false);
     }

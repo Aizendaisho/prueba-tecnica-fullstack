@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { createAuthor, updateAuthor } from "@/services/authorService";
+import { toast } from "sonner";
 
 type Props = {
   defaultValues?: Partial<AuthorFormValues>;
@@ -32,17 +33,17 @@ export function AuthorForm({ defaultValues, onSuccess, mode = "create" }: Props)
 
       if (mode === "edit") {
         await updateAuthor(data.id, { ...data, idBook: data.idBook ?? 0 });
-        alert("Autor actualizado");
+        toast.success("Autor actualizado");
       } else {
         await createAuthor({ ...data, idBook: data.idBook ?? 0 });
-        alert("Autor creado");
+        toast.success("Autor creado");
       }
 
       reset();
       onSuccess?.();
     } catch (err) {
       console.error(err);
-      alert("Error al guardar autor");
+      toast.error("Error al guardar autor");
     } finally {
       setLoading(false);
     }

@@ -12,5 +12,8 @@
   "description": "",
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "sonner": "^2.0.3"
   }
 }

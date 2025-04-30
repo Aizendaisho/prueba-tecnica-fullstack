@@ -7,6 +7,7 @@ import { ConfirmDeleteDialog } from "@/components/Books/ConfirmDeleteDialog";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 const PAGE_SIZE = 5;
 
@@ -33,11 +34,18 @@ export default function AuthorsPage() {
   useEffect(() => {
     fetchData();
   }, [refresh]);
-
+  
   const handleDelete = async (id: number) => {
-    await deleteAuthor(id);
-    setRefresh(!refresh);
+    try {
+      await deleteAuthor(id);
+      toast.success("Autor eliminado correctamente");
+      setRefresh(!refresh);
+    } catch (err) {
+      console.error(err);
+      toast.error("Error al eliminar el autor");
+    }
   };
+  
 
   const filteredAuthors = authors.filter((author) =>
     `${author.firstName} ${author.lastName}`.toLowerCase().includes(searchTerm.toLowerCase())
