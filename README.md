@@ -59,7 +59,7 @@ Prueba_tecnica/
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/prueba-tecnica-fullstack.git
+git clone https://github.com/Aizendaisho/prueba-tecnica-fullstack.git
 cd prueba-tecnica-fullstack
 ```
 
