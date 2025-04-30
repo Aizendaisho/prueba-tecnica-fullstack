@@ -111,7 +111,13 @@ export function BookForm({ onSuccess, mode, defaultValues }: BookFormProps) {
           {errors.publishDate && <p className="text-sm text-red-500">{errors.publishDate.message}</p>}
         </div>
 
-        <Button type="submit">Enviar</Button>
+        <Button type="submit" disabled={loading}>
+  {loading
+    ? "Guardando..."
+    : mode === "edit"
+    ? "Actualizar"
+    : "Crear"}
+</Button>
       </form>
 
       {submitted && (

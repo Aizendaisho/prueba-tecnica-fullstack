@@ -36,9 +36,15 @@ Prueba_tecnica/
 │   ├── Application/
 │   ├── Domain/
 │   └── Infrastructure/
+│   └── CleanArchitectureApi.sln
 ├── frontend/        # React + Tailwind + shadcn/ui
 │   ├── src/
-│   └── ...
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   ├── lib/validations.ts
+│   │   └── __tests__/  # pruebas unitarias
+│   └── vitest.config.ts
 ├── package.json     # Scripts globales (concurrently)
 ├── .gitignore
 └── README.md
@@ -88,22 +94,60 @@ npm run dev
 
 ---
 
+## 🔪 Cómo ejecutar las pruebas del frontend
+
+Desde la carpeta frontend, ejecuta:
+
+npm run test
+
+Esto utiliza vitest, @testing-library/react y jsdom para pruebas unitarias.
+
+Puedes encontrar ejemplos en:
+
+src/__tests__/HomePage.test.tsx
+
+src/__tests__/BookForm.test.tsx
+
+src/__tests__/AuthorForm.test.tsx
+
+---
+
+
+
+
 ## 📌 Funcionalidades principales
 
-### 📚 Libros
-- Crear, listar, editar y eliminar libros
-- Buscar libros por título o descripción
-- Lazy loading (5 en 5)
-- Página de detalle del libro con autor relacionado
-- Validaciones con Zod
-- Toasts para éxito/error
+📚 Libros
 
-### 👤 Autores
-- Crear, listar, editar y eliminar autores
-- Buscar autores por nombre
-- Mostrar cantidad de libros publicados por autor
-- Lazy loading
-- Toasts para éxito/error
+Crear, listar, editar y eliminar libros
+
+Buscar libros por título o descripción
+
+Lazy loading (5 en 5)
+
+Página de detalle del libro con autor relacionado
+
+Validaciones con Zod centralizadas en lib/validations.ts
+
+Toasts para éxito/error con sonner
+
+Diálogos de confirmación al eliminar
+
+👤 Autores
+
+Crear, listar, editar y eliminar autores
+
+Buscar autores por nombre
+
+Mostrar cantidad de libros publicados por autor
+
+Lazy loading (5 en 5)
+
+Toasts para éxito/error
+
+Diálogos de confirmación al eliminar
+
+
 
 ---
 
@@ -113,18 +157,25 @@ Este proyecto consume como fuente de datos la [FakeRestAPI](https://fakerestapi.
 
 ---
 
+
 ## ✅ Requerimientos cumplidos
 
-✔ React 18 + Tailwind + shadcn/ui  
-✔ Clean Architecture en backend .NET 8  
-✔ CRUD de libros y autores  
-✔ Página de detalle del libro con autor  
-✔ Lazy loading y búsqueda  
-✔ Toasts de notificación  
-✔ Sin uso de base de datos real (proxy HTTP)  
-✔ Monorepo estructurado con concurrently  
-✔ README y .gitignore configurados  
-✔ Subido a GitHub públicamente  
+✔ React 18 + Tailwind + shadcn/ui
+✔ Clean Architecture en backend .NET 8
+✔ CRUD de libros y autores
+✔ Página de detalle del libro con autor
+✔ Lazy loading y búsqueda
+✔ Toasts de notificación
+✔ Sin uso de base de datos real (proxy HTTP)
+✔ Monorepo estructurado con concurrently
+✔ README y .gitignore configurados
+✔ Subido a GitHub públicamente
+✔ Pruebas unitarias con Vitest (HomePage, BookForm, AuthorForm)
+✔ Validaciones centralizadas en un único archivo
+✔ Diálogo dinámico para editar y eliminar
+✔ Página de bienvenida por defecto
+
+
 
 ---
 

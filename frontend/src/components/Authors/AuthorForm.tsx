@@ -52,29 +52,27 @@ export function AuthorForm({ defaultValues, onSuccess, mode = "create" }: Props)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 max-w-md">
-      <div>
-        <Label htmlFor="id">ID</Label>
-        <Input type="number" {...register("id")} />
-        {errors.id && <p className="text-sm text-red-500">{errors.id.message}</p>}
-      </div>
+<div>
+<Label htmlFor="id">ID del autor</Label>
+<Input id="id" type="number" {...register("id")} />
+</div>
 
-      <div>
-        <Label htmlFor="firstName">Nombre</Label>
-        <Input {...register("firstName")} />
-        {errors.firstName && <p className="text-sm text-red-500">{errors.firstName.message}</p>}
-      </div>
 
-      <div>
-        <Label htmlFor="lastName">Apellido</Label>
-        <Input {...register("lastName")} />
-        {errors.lastName && <p className="text-sm text-red-500">{errors.lastName.message}</p>}
-      </div>
+<div>
+  <Label htmlFor="firstName">Nombre</Label>
+  <Input id="firstName" {...register("firstName")} />
+</div>
 
-      <div>
-      <Label htmlFor="idBook">ID del libro</Label>
-<Input type="number" {...register("idBook")} />
-{errors.idBook && <p className="text-sm text-red-500">{errors.idBook.message}</p>}
-      </div>
+<div>
+  <Label htmlFor="lastName">Apellido</Label>
+  <Input id="lastName" {...register("lastName")} />
+</div>
+
+<div>
+<Label htmlFor="idBook">ID del libro</Label>
+<Input id="idBook" type="number" {...register("idBook")} />
+</div>
+
 
       <Button type="submit" disabled={loading}>
         {loading ? "Guardando..." : mode === "edit" ? "Actualizar" : "Crear"}
