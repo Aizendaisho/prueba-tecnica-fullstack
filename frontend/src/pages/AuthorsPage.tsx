@@ -17,6 +17,7 @@ export default function AuthorsPage() {
   const [refresh, setRefresh] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  
 
   const fetchData = async () => {
     try {
@@ -62,14 +63,15 @@ export default function AuthorsPage() {
     <div className="space-y-6 max-w-5xl mx-auto">
       <h1 className="text-2xl font-bold">Autores</h1>
 
+
+      <AuthorForm onSuccess={() => setRefresh(!refresh)} />
+        
       <Input
         placeholder="Buscar autor por nombre..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="max-w-sm"
       />
-
-      <AuthorForm onSuccess={() => setRefresh(!refresh)} />
 
       <div className="grid gap-4 grid-cols-2">
         {visibleAuthors.map((author) => (

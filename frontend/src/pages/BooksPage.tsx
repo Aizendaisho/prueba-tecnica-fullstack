@@ -59,14 +59,14 @@ export default function BooksPage() {
       />
 
 
-      <div className="grid gap-4 grid-cols-2">
+      <div className="grid gap-4 grid-cols-2 ">
         {visibleBooks.map((book) => (
           <Card key={book.id} className="p-4 flex justify-between items-center">
             <div>
               <h2 className="text-lg font-semibold">{book.title}</h2>
               <p className="text-sm text-muted-foreground">{book.description}</p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
             <Button variant="secondary" asChild>
   <a href={`/books/${book.id}`}>Ver detalles</a>
 </Button>

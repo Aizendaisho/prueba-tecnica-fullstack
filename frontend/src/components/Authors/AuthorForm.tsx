@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AuthorFormValues, authorSchema } from "@/lib/authorSchema";
+import { AuthorFormValues, authorSchema } from "@/lib/validations";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,7 @@ type Props = {
 
 export function AuthorForm({ defaultValues, onSuccess, mode = "create" }: Props) {
   const [loading, setLoading] = useState(false);
+  
 
   const {
     register,

@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { bookSchema, BookFormValues } from "@/lib/bookSchema";
+import { bookSchema, BookFormValues } from "@/lib/validations";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createBook,updateBook } from "@/services/bookService";
 import { toast } from "sonner";
 
@@ -16,7 +16,7 @@ type BookFormProps = {
 };
 
 
-export function BookForm({ onSuccess, mode }: BookFormProps) {
+export function BookForm({ onSuccess, mode, defaultValues }: BookFormProps) {
 
   const [submitted, setSubmitted] = useState<BookFormValues | null>(null);
   const [loading, setLoading] = useState(false);
@@ -28,8 +28,22 @@ export function BookForm({ onSuccess, mode }: BookFormProps) {
     formState: { errors },
     reset,
   } = useForm<BookFormValues>({
-    resolver: zodResolver(bookSchema),
+    resolver: zodResolver(bookSchema),defaultValues,
+
   });
+  
+
+  useEffect(() => {
+    if (defaultValues) {
+      const transformedValues = {
+        ...defaultValues,
+        publishDate: defaultValues.publishDate?.split("T")[0] ?? "",
+      };
+  
+      reset(transformedValues);
+    }
+  }, [defaultValues]);
+  
 
   const onSubmit = async (data: BookFormValues) => {
     try {
@@ -58,8 +72,9 @@ export function BookForm({ onSuccess, mode }: BookFormProps) {
   
 
   return (
-    <div className="space-y-6 max-w-md mx-auto">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    // <div className="space-y-6 max-w-md mx-auto">
+    <>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 max-w-md">
         <div>
           <Label htmlFor="id">ID</Label>
           <Input id="id" type="number" {...register("id")} />
@@ -110,7 +125,8 @@ export function BookForm({ onSuccess, mode }: BookFormProps) {
           <p><strong>Publicación:</strong> {submitted.publishDate}</p>
         </div>
       )}
-    </div>
+    {/* </div> */}
+      </>
   );
 }
 
